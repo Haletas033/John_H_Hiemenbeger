@@ -1,3 +1,4 @@
+import users
 from bot import bot
 
 @bot.command()
