@@ -1,4 +1,5 @@
 from bot import bot, TOKEN
+import webserver
 import image
 import text
 
@@ -6,4 +7,5 @@ import text
 async def on_ready():
     print(f"{bot.user} is awake")
 
+webserver.keepalive()
 bot.run(TOKEN)
