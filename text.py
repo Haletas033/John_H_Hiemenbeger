@@ -21,10 +21,8 @@ async def slot(ctx, money: int = 100):
     await ctx.send(f"Spinning with ${money}...")
     await asyncio.sleep(1)
 
-    roll = ""
-    for i in range(3): roll += random.choice(options)
-
-    await ctx.send(roll)
+    roll = [random.choice(options) for i in range(3)]
+    await ctx.send("".join(roll))
 
     if roll[0] == roll[1] and roll[1] == roll[2]:
         money *= 10
