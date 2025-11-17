@@ -1,7 +1,10 @@
 import asyncio
 import random
 
+import aiohttp
 import requests
+from flask import ctx
+
 from bot import bot
 
 @bot.command()
@@ -32,3 +35,12 @@ async def slot(ctx, money: int = 100):
         money //= 2
 
     await ctx.send(f"You now have ${money}!")
+
+@bot.command()
+async def dadJoke(ctx):
+    url = "https://icanhazdadjoke.com/"
+    headers = {"Accept": "application/json"}
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url, headers=headers) as response:
+            data = await response.json()
+            await ctx.send(data.get("joke"))

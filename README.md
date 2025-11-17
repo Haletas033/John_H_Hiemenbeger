@@ -10,6 +10,7 @@ John H Hiemenbeger is the best discord bot in the world. The aim of John H Hieme
 * again - Repeat the last command
 * quote - Say a random quote using [requests.get("https://dummyjson.com/docs/quotes")]
 * slot - Roll a slot machine
+* dadJoke - Say a dad joke using ["https://icanhazdadjoke.com"]
 
 ## License
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).  See the [LICENSE](LICENSE) file for details.
