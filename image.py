@@ -22,3 +22,8 @@ async def cat(ctx, *, args: str = ""):
                 advanced = value
 
     await ctx.send(requests.get(f"https://cataas.com/cat{basic}?{advanced}json=true").json()["url"])
+
+@bot.command()
+async def inspire(ctx):
+    inspiration = requests.get("https://inspirobot.me/api?generate=true")
+    await ctx.send(inspire.text)
