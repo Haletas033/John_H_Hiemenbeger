@@ -26,4 +26,4 @@ async def cat(ctx, *, args: str = ""):
 @bot.command()
 async def inspire(ctx):
     inspiration = requests.get("https://inspirobot.me/api?generate=true")
-    await ctx.send(inspire.text)
+    await ctx.send(inspiration.text)
