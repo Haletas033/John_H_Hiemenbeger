@@ -44,3 +44,10 @@ async def dadJoke(ctx):
         async with session.get(url, headers=headers) as response:
             data = await response.json()
             await ctx.send(data.get("joke"))
+
+@bot.command()
+async def russianRoulette(ctx):
+    if random.randint(1, 6) == 1:
+        await ctx.send("*Bang!*")
+    else:
+        await ctx.send("*Click...*")
