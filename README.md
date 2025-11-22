@@ -13,6 +13,7 @@ John H Hiemenbeger is the best discord bot in the world. The aim of John H Hieme
 * dadJoke - Say a dad joke using [https://icanhazdadjoke.com]
 * inspire - Generate a random inspirational image using [https://inspirobot.me]
 * russianRoulette - 1 in 6 chance of surviving
+* completeGraph - Generate a (https://mathworld.wolfram.com/CompleteGraph.html)[complete graph] nodes: int, width: int, size, int
 
 ## License
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).  See the [LICENSE](LICENSE) file for details.
