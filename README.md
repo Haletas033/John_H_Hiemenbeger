@@ -14,6 +14,9 @@ John H Hiemenbeger is the best discord bot in the world. The aim of John H Hieme
 * inspire - Generate a random inspirational image using [https://inspirobot.me]
 * russianRoulette - 1 in 6 chance of surviving
 * completeGraph - Generate a (https://mathworld.wolfram.com/CompleteGraph.html)[complete graph] nodes: int, width: int, size, int
+* rand - Pick a random number between 1 and n: int
+* coinFlip - Flip a virtual coin
+* decide - Choose from a list of comma seperated choices
 
 ## License
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).  See the [LICENSE](LICENSE) file for details.

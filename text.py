@@ -51,3 +51,17 @@ async def russianRoulette(ctx):
         await ctx.send("*Bang!*")
     else:
         await ctx.send("*Click...*")
+
+@bot.command()
+async def rand(ctx, n: int = 10):
+    await ctx.send(f"{random.randint(1, n)} was chosen!")
+
+@bot.command()
+async def coinFlip(ctx):
+    s = "Heads!" if random.randint(1, 2) == 1 else "Tails!"
+    await ctx.send(s)
+
+@bot.command()
+async def decide(ctx, *, choices: str):
+    options = [choice.strip() for choice in choices.split(',')]
+    await ctx.send(random.choice(options))
