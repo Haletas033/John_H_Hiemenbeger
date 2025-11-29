@@ -1,5 +1,6 @@
 from io import BytesIO
 
+import aiohttp
 import discord
 import requests
 import users
@@ -8,8 +9,12 @@ from bot import bot
 from PIL import Image, ImageDraw
 from math import sin, cos, pi
 @bot.command()
-async def dog(ctx):
-    await ctx.send(requests.get("https://random.dog/woof.json").json()["url"])
+async def dog(ctx, *, args: str = ""):
+    url = "https://random.dog/woof.json"
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as response:
+            data = await response.json()
+            await ctx.send(handleAdditives(args, data.get("url")))
 
 @bot.command()
 async def cat(ctx, *, args: str = ""):
@@ -26,13 +31,20 @@ async def cat(ctx, *, args: str = ""):
             elif key == "advanced":
                 advanced = value
 
-    message = requests.get(f"https://cataas.com/cat{basic}?{advanced}json=true").json()["url"]
-    await ctx.send(handleAdditives(args, message))
+    url = f"https://cataas.com/cat{basic}?{advanced}json=true"
+
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as response:
+            data = await response.json()
+            await ctx.send(handleAdditives(args, data.get("url")))
 
 @bot.command()
-async def inspire(ctx, args):
-    inspiration = requests.get("https://inspirobot.me/api?generate=true")
-    await ctx.send(handleAdditives(args, inspiration.text))
+async def inspire(ctx, args: str = ""):
+    url = "https://inspirobot.me/api?generate=true"
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as response:
+            inspiration = await response.text()
+            await ctx.send(handleAdditives(args, inspiration))
 
 @bot.command()
 async def completeGraph(ctx, *, args: str = ""):

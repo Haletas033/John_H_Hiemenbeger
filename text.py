@@ -8,19 +8,22 @@ from additives import handleAdditives
 from bot import bot
 
 @bot.command()
-async def repeat(ctx, message: str, times: int = 1, *, args: str):
+async def repeat(ctx, message: str, times: int = 1, *, args: str = ""):
     times = min(times, 10)
     for i in range(times):
         await ctx.send(handleAdditives(args, message))
 
 @bot.command()
-async def quote(ctx, *, args: str):
-    quoteData = requests.get("https://dummyjson.com/quotes/random")
-    message = f"{quoteData.json()['quote']} - {quoteData.json()['author']}"
-    await ctx.send(handleAdditives(args, message))
+async def quote(ctx, *, args: str = ""):
+    url = "https://dummyjson.com/quotes/random"
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as response:
+            quoteData = await response.json()
+            message = f"{quoteData.get('quote')} - {quoteData.get('author')}"
+            await ctx.send(handleAdditives(args, message))
 
 @bot.command()
-async def slot(ctx, money: int = 100, *, args: str):
+async def slot(ctx, money: int = 100, *, args: str = ""):
     options = ['7️⃣', '🔔', '🍒', '🍇', '🍋']
     await ctx.send(f"Spinning with ${money}...")
     await asyncio.sleep(1)
@@ -38,7 +41,7 @@ async def slot(ctx, money: int = 100, *, args: str):
     await ctx.send(handleAdditives(args, f"You now have ${money}!"))
 
 @bot.command()
-async def dadJoke(ctx, *, args):
+async def dadJoke(ctx, *, args: str = ""):
     url = "https://icanhazdadjoke.com/"
     headers = {"Accept": "application/json"}
     async with aiohttp.ClientSession() as session:
@@ -47,7 +50,7 @@ async def dadJoke(ctx, *, args):
             await ctx.send(handleAdditives(args, data.get("joke")))
 
 @bot.command()
-async def russianRoulette(ctx, *, args):
+async def russianRoulette(ctx, *, args: str = ""):
     if random.randint(1, 6) == 1:
         message = "*Bang!*"
     else:
@@ -56,15 +59,15 @@ async def russianRoulette(ctx, *, args):
     await ctx.send(handleAdditives(args, message))
 
 @bot.command()
-async def rand(ctx, n: int = 10, *, args: str):
+async def rand(ctx, n: int = 10, *, args: str = ""):
     await ctx.send(handleAdditives(args, f"{random.randint(1, n)} was chosen!"))
 
 @bot.command()
-async def coinFlip(ctx, *, args: str):
+async def coinFlip(ctx, *, args: str = ""):
     side = "Heads!" if random.randint(1, 2) == 1 else "Tails!"
     await ctx.send(handleAdditives(args, side))
 
 @bot.command()
-async def decide(ctx, *, choices: str):
+async def decide(ctx, *, choices: str = ""):
     options = [choice.strip() for choice in choices.split(',')]
     await ctx.send(handleAdditives(choices, random.choice(options)))
