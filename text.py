@@ -68,6 +68,12 @@ async def coinFlip(ctx, *, args: str = ""):
     await ctx.send(handleAdditives(args, side))
 
 @bot.command()
-async def decide(ctx, *, choices: str = ""):
+async def decide(ctx, *, text: str = ""):
+    if '|' in text:
+        choices, args = [char.strip() for char in text.split('|', 1)]
+    else:
+        choices = text.strip()
+        args = ""
+
     options = [choice.strip() for choice in choices.split(',')]
-    await ctx.send(handleAdditives(choices, random.choice(options)))
+    await ctx.send(handleAdditives(args, random.choice(options)))
