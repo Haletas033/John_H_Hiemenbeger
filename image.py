@@ -3,10 +3,10 @@ from io import BytesIO
 import discord
 import requests
 import users
+from additives import handleAdditives
 from bot import bot
 from PIL import Image, ImageDraw
 from math import sin, cos, pi
-
 @bot.command()
 async def dog(ctx):
     await ctx.send(requests.get("https://random.dog/woof.json").json()["url"])
@@ -26,12 +26,13 @@ async def cat(ctx, *, args: str = ""):
             elif key == "advanced":
                 advanced = value
 
-    await ctx.send(requests.get(f"https://cataas.com/cat{basic}?{advanced}json=true").json()["url"])
+    message = requests.get(f"https://cataas.com/cat{basic}?{advanced}json=true").json()["url"]
+    await ctx.send(handleAdditives(args, message))
 
 @bot.command()
-async def inspire(ctx):
+async def inspire(ctx, args):
     inspiration = requests.get("https://inspirobot.me/api?generate=true")
-    await ctx.send(inspiration.text)
+    await ctx.send(handleAdditives(args, inspiration.text))
 
 @bot.command()
 async def completeGraph(ctx, *, args: str = ""):

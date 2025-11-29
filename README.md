@@ -18,5 +18,12 @@ John H Hiemenbeger is the best discord bot in the world. The aim of John H Hieme
 * coinFlip - Flip a virtual coin
 * decide - Choose from a list of comma seperated choices
 
+##Current Additives:
+* spoiler - "||"
+* bold - "**"
+* italic - "*"
+* code - "```"
+* for - Direct the message at someone
+
 ## License
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).  See the [LICENSE](LICENSE) file for details.
