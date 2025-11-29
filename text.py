@@ -16,7 +16,7 @@ async def repeat(ctx, message: str, times: int = 1, *, args: str):
 @bot.command()
 async def quote(ctx, *, args: str):
     quoteData = requests.get("https://dummyjson.com/quotes/random")
-    message = f"{quoteData.json()["quote"]} - {quoteData.json()["author"]}"
+    message = f"{quoteData.json()['quote']} - {quoteData.json()['author']}"
     await ctx.send(handleAdditives(args, message))
 
 @bot.command()
