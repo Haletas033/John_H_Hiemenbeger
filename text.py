@@ -8,6 +8,10 @@ from additives import handleAdditives
 from bot import bot
 
 @bot.command()
+async def say(ctx, message: str *, args: str = ""):
+    await ctx.send(handleAdditives(args, message))
+
+@bot.command()
 async def repeat(ctx, message: str, times: int = 1, *, args: str = ""):
     times = min(times, 10)
     for i in range(times):
